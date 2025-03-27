@@ -1,5 +1,8 @@
 package level3;
 
+import level3.management.StudentManager;
+import level3.models.Student;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,33 +24,13 @@ public class Main {
                 new Student("Sam", 24, "PHP", 3.0)
         );
 
-        System.out.println("Name and age of each student:");
-        students.forEach(s -> System.out.println(s.getName() + " " + s.getAge()));
 
-        List<Student> studentsStartingWithA = students.stream()
-                .filter(student -> student.getName().startsWith("A"))
-                .collect(Collectors.toList());
-        System.out.println("\nStudents whose name starts with 'A':");
-        studentsStartingWithA.forEach(student -> System.out.println(student.getName()));
-
-        List <Student> passingStudents = students.stream()
-                .filter(student -> student.getGrade() >= 5)
-                .collect(Collectors.toList());
-        System.out.println("\nPassing students:");
-        passingStudents.forEach(student -> System.out.println(student.getName() + " " + student.getGrade()));
+        StudentManager.printStudents("\nName and age of all students:", StudentManager.getNamesAndAges(students));
+        StudentManager.printStudents("\nStudents whose name starts with 'A':", StudentManager.getStudentsWithNameStartingWithPrefix(students, "A"));
+        StudentManager.printStudents("\nPassing students:", StudentManager.getPassingStudents(students));
+        StudentManager.printStudents("\nNot PHP:", StudentManager.getNotPHPStudents(students));
+        StudentManager.printStudents("\nMajor Java:", StudentManager.getMajorJavaStudents(students));
 
 
-        List <Student> notPHP = students.stream()
-                .filter(student -> student.getCourse() != "PHP")
-                .collect(Collectors.toList());
-        System.out.println("\nNot PHP:");
-        notPHP.forEach(student -> System.out.println(student.getName() + " " + student.getCourse()));
-
-
-        List <Student> majorJava = students.stream()
-                .filter(student -> student.getCourse() == "Java" && student.getAge() > 18)
-                .collect(Collectors.toList());
-        System.out.println("\nMajor Java:");
-        majorJava.forEach(student -> System.out.println(student.getName() + " " + student.getCourse()));
     }
 }

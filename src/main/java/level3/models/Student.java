@@ -1,7 +1,6 @@
-package level3;
+package level3.models;
 
 public class Student {
-    //Crea una classe Alumne amb els atributs: Nom, edat, curs i nota.
 
     private String name;
     private int age;
